@@ -15,8 +15,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var numberOfPeopleSlider: UISlider!
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
     @IBOutlet weak var eachPersonAmountLabel: UILabel!
+    var tipPer = [18,20,22]
     
-    
+    @IBOutlet weak var tipControl: UISegmentedControl!
     
     let tipCalc = TipCalc(amountBeforeTax: 0.00, tipPercentage: 0)
     //used to store the textField
@@ -25,10 +26,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         amountBeforeTaxTextField.text = String(format: "%0.2f", arguments:[tipCalc.amountBeforeTax])
-
+        // tipTextField.text = String(format: "%d", arguments:[tipPer[tipControl.selectedSegmentIndex]])
         
         tipTextField.text = String(format: "%d", arguments:[tipCalc.tipPercentage])
+       
         
         eachPersonAmountLabel.text = String(format:"Each: $%0.2f", arguments:[(tipCalc.totalAmount / numberOfPeopleSlider.value)])
         numberOfPeopleLabel.text = "people: \(Int(numberOfPeopleSlider.value))"
@@ -37,6 +41,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     func calcTip() {
+       
         
         tipCalc.tipPercentage = ((tipTextField.text)! as NSString).floatValue
         tipCalc.amountBeforeTax = ((amountBeforeTaxTextField.text)! as NSString).floatValue
@@ -52,18 +57,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func tipSliderValueChanged(sender: AnyObject) {
-    
+        
+        
         tipPercentageLabel.text! = String(format: "Tip: %02d%%", arguments: [Int(tipCalc.tipPercentage)])
         calcTip()
     }
     
     @IBAction func numberOfPeopleSliderChanged(sender: AnyObject) {
-        numberOfPeopleLabel.text = "Split: \(Int(numberOfPeopleSlider.value))"
+        numberOfPeopleLabel.text = "people: \(Int(numberOfPeopleSlider.value))"
         updateUI()
     }
     
     
     @IBAction func amountBeforeTaxTextFieldChanged(sender: AnyObject) {
+        calcTip()
+    }
+    
+    @IBAction func amountTipTextFieldChanged(sender: AnyObject) {
+        tipTextField.text = String(format: "%d", arguments:[tipPer[tipControl.selectedSegmentIndex]])
         calcTip()
     }
     
