@@ -92,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             // do the caculator
             calcTip()
         }
-        return true;    }
+        return true;  }
 }
 
 
