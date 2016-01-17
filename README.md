@@ -1,5 +1,11 @@
 # Tip-Calculator
 
+tip calculator application in swift
+
+author: wentai,cui
+
+Time spent: 4 hours spent in total
+
 User Stories
 
 The following required functionality is complete:
