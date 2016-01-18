@@ -19,5 +19,8 @@ The following optional features are implemented:
  
  user can easily seperate the bill based on the number of people
  
+ Change the background color
+ 
+ User can change the default percentage
 
 ![](https://github.com/BoilerMaker2015/Tip-Calculator/raw/master/pt.gif)
